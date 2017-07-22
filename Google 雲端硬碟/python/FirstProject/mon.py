@@ -11,7 +11,7 @@ class monster(threading.Thread):
         self.image = pygame.transform.scale(self.image, (r, r))
         self.x = 870
         self.y = 400 - r
-        self.speed = random.uniform(5, 9)
+        self.speed = 6
 
     """def isHit(self):
         if self.man.x < self.x < self.man.x + self.man.image.get_width() \
@@ -28,7 +28,4 @@ class monster(threading.Thread):
 
             if self.x < -70:
                 live = 0
-                monster.ms.remove(self)
-            if self.isHit() == True:
-                live = False
                 monster.ms.remove(self)

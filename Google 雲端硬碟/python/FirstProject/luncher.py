@@ -15,7 +15,7 @@ class creatmonster(threading.Thread):       #建構怪物
             time.sleep(random.uniform(0.8,1.6))
 def repaint():      #刷新頁面
     screen.fill([255, 255, 255])
-    screen.blit(man.image, (man.x, man.y))
+    screen.blit(man._image, (man.x, man.y))
     for m in mon.monster.ms:
         screen.blit(m.image,(m.x,m.y))
     pygame.draw.line(screen, [0, 0, 0], (0, 400), (800, 400), 5)
