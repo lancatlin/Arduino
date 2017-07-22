@@ -7,11 +7,11 @@ class mario(threading.Thread):
         threading.Thread.__init__(self)
         self.x=100
         self.y=327
-        self.image=pygame.image.load('run.PNG')
-        self._image = self.image.copy()
-        self.angle=0
+        self.image=pygame.image.load('run.PNG') #圖片原始檔
+        self._image = self.image.copy()         #拷貝的圖片(用於旋轉)
+        self.angle=0                            #圖片轉動方向
         self.isgo=1     #循環的條件
-    def rot_center(self,image, angle):
+    def rot_center(self,image, angle):          #旋轉圖片
         """rotate an image while keeping its center and size"""
         self.angle -= angle
         orig_rect = image.get_rect()
@@ -31,9 +31,9 @@ class mario(threading.Thread):
                 self.y += jump + t * t/2
                 t += 1
             self.y = 327
-    def run(self):
+    def run(self):      #馬力歐主程式
         while self.isgo:
-           allkey=pygame.key.get_pressed()
+           allkey=pygame.key.get_pressed()  #取得按鍵輸入
            if allkey[K_SPACE]:
                self.jump(30)
                time.sleep(0)

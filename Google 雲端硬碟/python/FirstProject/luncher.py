@@ -16,7 +16,7 @@ class creatmonster(threading.Thread):       #建構怪物
 def repaint():      #刷新頁面
     screen.fill([255, 255, 255])
     screen.blit(man._image, (man.x, man.y))
-    for m in mon.monster.ms:
+    for m in mon.monster.ms:    #劃出陣列中的每一隻怪物
         screen.blit(m.image,(m.x,m.y))
     pygame.draw.line(screen, [0, 0, 0], (0, 400), (800, 400), 5)
     pygame.display.flip()
@@ -25,10 +25,11 @@ pygame.display.set_caption("First project")
 screen=pygame.display.set_mode((800,480))
 backgrond=[255,255,255]
 screen.fill(backgrond)
-man.start()
+man.start()     #啟動馬力歐的程式
 pygame.display.flip()
-boss=creatmonster()
+boss=creatmonster() #建構產生怪物的程式
 boss.start()
+time.sleep(0.01)
 while True:     #遊戲主循環
     for event in pygame.event.get():
         if event.type == QUIT:
