@@ -1,4 +1,4 @@
-import pygame,threading,time
+import pygame,threading,time,Data
 from pygame.locals import *
 class mario(threading.Thread):
     def __init__(self):     #角色初始化
@@ -39,5 +39,3 @@ class mario(threading.Thread):
                time.sleep(0)
            self._image = self.rot_center(self.image,20)
            time.sleep(0.05)
-man=mario()
-score=0
