@@ -35,4 +35,5 @@ class monster(threading.Thread):
                 monster.ms.remove(self)
             if self.isHit():    #如果碰到主角
                 live = 0
+                mario.man.isgo=False
                 monster.ms.remove(self)

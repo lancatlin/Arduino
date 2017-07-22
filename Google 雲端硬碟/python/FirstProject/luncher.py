@@ -1,18 +1,14 @@
 import pygame
 from pygame.locals import *
-import sys,threading,time,random,_thread
+import sys,time,random,_thread
 import mario,mon
 
 man=mario.man  #建構馬力歐
-class creatmonster(threading.Thread):       #建構怪物
-    def __init__(self):
-        threading.Thread.__init__(self)
-    def run(self):
-        self.islive=1
-        while self.islive:
-            mon.monster.ms.append(mon.monster())
-            mon.monster.ms[-1].start()
-            time.sleep(random.uniform(0.8,1.6))
+def creatmonster():
+    while man.isgo:
+        mon.monster.ms.append(mon.monster())
+        mon.monster.ms[-1].start()
+        time.sleep(random.uniform(0.8,1.6))
 def repaint():      #刷新頁面
     screen.fill([255, 255, 255])
     screen.blit(man._image, (man.x, man.y))
@@ -37,19 +33,18 @@ backgrond=[255,255,255]
 screen.fill(backgrond)
 man.start()     #啟動馬力歐的程式
 pygame.display.flip()
-boss=creatmonster() #建構產生怪物的程式
-boss.start()
+boss=_thread.start_new_thread(creatmonster,())#建構產生怪物的程式
 time.sleep(0.01)
 up = _thread.start_new_thread(scoreUP,())
 while True:     #遊戲主循環
     for event in pygame.event.get():
-        if event.type == QUIT:
+        if event.type == QUIT or man.isgo==False:
             man.isgo=0
-            boss.islive=0
             print(mon.monster.ms)
             pygame.quit()
             sys.exit
 
     repaint()
+print(mario.score)
 pygame.quit()
 sys.exit
