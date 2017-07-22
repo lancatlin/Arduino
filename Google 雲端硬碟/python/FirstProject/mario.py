@@ -1,7 +1,5 @@
 import pygame,threading,time
 from pygame.locals import *
-from pygame.transform import *
-
 class mario(threading.Thread):
     def __init__(self):     #角色初始化
         threading.Thread.__init__(self)
@@ -11,6 +9,8 @@ class mario(threading.Thread):
         self._image = self.image.copy()         #拷貝的圖片(用於旋轉)
         self.angle=0                            #圖片轉動方向
         self.isgo=1     #循環的條件
+    def getXY(self):
+        return [self.x+35,self.y+35]
     def rot_center(self,image, angle):          #旋轉圖片
         """rotate an image while keeping its center and size"""
         self.angle -= angle
@@ -39,3 +39,4 @@ class mario(threading.Thread):
                time.sleep(0)
            self._image = self.rot_center(self.image,20)
            time.sleep(0.05)
+man=mario()

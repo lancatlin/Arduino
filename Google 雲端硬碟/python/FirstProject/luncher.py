@@ -3,7 +3,7 @@ from pygame.locals import *
 import sys,threading,time,random
 import mario,mon
 
-man=mario.mario()  #建構馬力歐
+man=mario.man  #建構馬力歐
 class creatmonster(threading.Thread):       #建構怪物
     def __init__(self):
         threading.Thread.__init__(self)
