@@ -40,3 +40,4 @@ class mario(threading.Thread):
            self._image = self.rot_center(self.image,20)
            time.sleep(0.05)
 man=mario()
+score=0
