@@ -9,7 +9,7 @@ class mario(threading.Thread):
         self._image = self.image.copy()         #拷貝的圖片(用於旋轉)
         self.angle=0                            #圖片轉動方向
         self.isgo=1     #循環的條件
-    def getXY(self):
+    def getXY(self):                            #取得角色中心點
         return [self.x+35,self.y+35]
     def rot_center(self,image, angle):          #旋轉圖片
         """rotate an image while keeping its center and size"""
@@ -31,11 +31,15 @@ class mario(threading.Thread):
                 self.y += jump + t * t/2
                 t += 1
             self.y = 327
+    def keydown(self,_key):
+        allkey = pygame.key.get_pressed()
+        if allkey[_key]:
+            return True
+        else:
+            return False
     def run(self):      #馬力歐主程式
         while self.isgo:
-           allkey=pygame.key.get_pressed()  #取得按鍵輸入
-           if allkey[K_SPACE]:
+           if self.keydown(K_SPACE):
                self.jump(30)
-               time.sleep(0)
-           self._image = self.rot_center(self.image,20)
+           self._image = self.rot_center(self.image,20/6*Data.speed)
            time.sleep(0.05)

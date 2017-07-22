@@ -8,7 +8,6 @@ class monster(threading.Thread):
         self.image = pygame.transform.scale(self.image, (self.r, self.r))
         self.x = 870
         self.y = 400 - self.r
-        self.speed = 7
     def getXY(self):
         return [self.x+(self.r/2),self.y+(self.r/2)]
     def dist(self,x,y):   #取得與馬力歐之間的距離
@@ -26,8 +25,7 @@ class monster(threading.Thread):
         live = 1
         while live:
             time.sleep(0.01)
-            self.x -= self.speed
-
+            self.x -= Data.speed
             if self.x < -70:    #如果超出畫面
                 live = 0
                 Data.ms.remove(self)
