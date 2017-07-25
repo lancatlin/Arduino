@@ -1,4 +1,4 @@
-import pygame,threading,time,Data
+import pygame,threading,time,Data,_thread
 from pygame.locals import *
 class mario(threading.Thread):
     def __init__(self):     #角色初始化
