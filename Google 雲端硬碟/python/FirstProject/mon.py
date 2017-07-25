@@ -22,14 +22,14 @@ class monster(threading.Thread):
         else:
             return False
     def run(self):          #怪物主程式
-        live = 1
-        while live:
+        live=True
+        while Data.man.isgo and live:
             time.sleep(0.01)
             self.x -= Data.speed
             if self.x < -70:    #如果超出畫面
-                live = 0
                 Data.ms.remove(self)
+                live=False
+                print(Data.ms)
             if self.isHit():    #如果碰到主角
-                live = 0
                 Data.man.isgo=False
-                Data.ms.remove(self)
+                live=False

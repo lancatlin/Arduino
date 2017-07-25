@@ -14,6 +14,7 @@ def creatmonster():     #建構怪物的程式:boss
     while Data.man.isgo:
         Data.ms.append(mon.monster())
         Data.ms[-1].start()
+        print(len(Data.ms))
         time.sleep(random.uniform(0.8,1.4))
 def repaint():      #刷新頁面
     global man
@@ -64,8 +65,7 @@ def start():
             if i.type == QUIT:
                 pygame.quit()
                 sys.exit()
-        if Data.man.isgo==False:
-            Data.man.isgo=0
+        if Data.man._isgo==False:
             print(Data.score)
             time.sleep(1)
             break
