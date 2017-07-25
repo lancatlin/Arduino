@@ -22,27 +22,42 @@ def txt(string,big,color,xy):
     fr1=fc1.get_rect()
     fr1.center=xy
     return [fc1,fr1]
+def rot_center(image, angle):          #旋轉圖片
+    """rotate an image while keeping its center and size"""
+    orig_rect = image.get_rect()
+    rot_image = pygame.transform.rotate(image, angle)
+    rot_rect = orig_rect.copy()
+    rot_rect.center = rot_image.get_rect().center
+    rot_image = rot_image.subsurface(rot_rect).copy()
+    return rot_image
 def welcome(score):
-    a=txt('Roaling Jump',80,(black,white),(400,100))
-    s=txt('last score:'+score,50,(black,white),(600,200))
+    a=txt('Roaling Jump',90,(black,white),(400,100))
+    s=txt('last score:'+score,50,(black,white),(550,430))
+    image = pygame.image.load('run.PNG')  # 圖片原始檔
+    image=pygame.transform.scale(image,(180,180))
+    _image = image.copy()  # 拷貝的圖片(用於旋轉)
     r=open('score.txt','r')
     x = 1
     c = []
     for i in r.read().split():
-        b = txt(str(x) + ':' + i, 50, (black, white), (200, 130 + x * 60))
+        b = txt(str(x) + ':' + i, 45, (black, white), (200, 130 + x * 60))
         c.append(b)
         x += 1
+    angle=0
     while True:
         screen.fill(white)
         screen.blit(a[0],a[1])
         screen.blit(s[0],s[1])
         for j in c:
             screen.blit(j[0],j[1])
+        _image=rot_center(image,angle)
+        angle-=2
+        screen.blit(_image,(450,180))
         if keydown(K_SPACE):
             print('start')
             break
         pygame.display.flip()
-        time.sleep(0.05)
+        time.sleep(0.01)
 def ap(s):
     rs=open('score.txt','r')
     a=[]

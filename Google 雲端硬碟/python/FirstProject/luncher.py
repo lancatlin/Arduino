@@ -14,7 +14,6 @@ def creatmonster():     #建構怪物的程式:boss
     while Data.man.isgo:
         Data.ms.append(mon.monster())
         Data.ms[-1].start()
-        print(len(Data.ms))
         time.sleep(random.uniform(0.8,1.4))
 def repaint():      #刷新頁面
     global man

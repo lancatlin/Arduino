@@ -29,7 +29,6 @@ class monster(threading.Thread):
             if self.x < -70:    #如果超出畫面
                 Data.ms.remove(self)
                 live=False
-                print(Data.ms)
             if self.isHit():    #如果碰到主角
                 Data.man.isgo=False
                 live=False
