@@ -22,7 +22,9 @@ class mario(threading.Thread):
         rot_image = rot_image.subsurface(rot_rect).copy()
         return rot_image
     def jump(self,h):     #跳躍的程式
+        sound=pygame.mixer.Sound('pop.wav')
         if self.y == 327:
+            sound.play()
             jump = -1*h
             t = 0
             self.y = 326
@@ -34,6 +36,7 @@ class mario(threading.Thread):
                 if self.isgo==False:
                     break
             self.y = 327
+            sound.stop()
     def keydown(self,_key):
         allkey = pygame.key.get_pressed()
         if allkey[_key]:
@@ -41,7 +44,9 @@ class mario(threading.Thread):
         else:
             return False
     def die(self,h):     #跳躍的程式
+        sound=pygame.mixer.Sound('drum.wav')
         if self.y == 327:
+            sound.play()
             jump = -1*h
             t = 0
             self.y = 326
@@ -51,6 +56,8 @@ class mario(threading.Thread):
                 self.y += jump + t * t/2
                 t += 1
             self._isgo = False
+            time.sleep(1.5)
+            sound.stop()
     def run(self):      #馬力歐主程式
         while self.isgo:
            if self.keydown(K_SPACE):
